@@ -21,8 +21,9 @@ public class Branches {
 
     private Customers findCustomer(String customerName) {
         for(int i = 0; i < this.customers.size(); i++) {
-            if(this.customers.get(i).getName().equals(customerName)) {
-                return this.customers.get(i);
+            Customers check = this.customers.get(i);
+            if(check.getName().equals(customerName)) {
+                return check;
             }
         }
         return null;
@@ -30,7 +31,7 @@ public class Branches {
 
     public boolean addCustomer(String customerName, double transaction) {
         Customers temp = findCustomer(customerName);
-        if(temp != null) {
+        if(temp == null) {
             temp = new Customers(customerName, transaction);
             this.customers.add(temp);
             return true;
